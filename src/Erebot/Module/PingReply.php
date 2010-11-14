@@ -22,14 +22,14 @@ extends Erebot_Module_Base
     public function reload($flags)
     {
         if ($flags & self::RELOAD_HANDLERS) {
-            $handler = new ErebotEventHandler(
+            $handler = new Erebot_EventHandler(
                             array($this, 'handlePing'),
-                            'ErebotEventPing');
+                            'Erebot_Event_Ping');
             $this->_connection->addEventHandler($handler);
         }
     }
 
-    public function handlePing(iErebotEventText &$event)
+    public function handlePing(Erebot_Interface_Event_Generic &$event)
     {
         $this->sendCommand('PONG '.$event->getText());
     }
