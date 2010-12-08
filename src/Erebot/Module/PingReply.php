@@ -31,7 +31,6 @@ extends Erebot_Module_Base
 
     public function handlePing(Erebot_Interface_Event_Generic &$event)
     {
-    var_dump('!!!');
         $this->sendCommand('PONG '.$event->getText());
     }
 }
