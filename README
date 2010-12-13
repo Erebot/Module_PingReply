@@ -1,3 +1,5 @@
-Responds to PING messages from IRC servers
+Respond to PING messages from IRC servers
 
-Package detailed description here (found in README)
+This module really does nothing else than what's mentionned above.
+It will wait quietly for PING messages from IRC servers and respond
+with the appropriate PONG message.
