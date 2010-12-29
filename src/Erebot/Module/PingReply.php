@@ -31,7 +31,7 @@ extends Erebot_Module_Base
 
     public function handlePing(Erebot_Interface_Event_Generic &$event)
     {
-        $this->sendCommand('PONG '.$event->getText());
+        $this->sendCommand('PONG :'.$event->getText());
     }
 }
 
