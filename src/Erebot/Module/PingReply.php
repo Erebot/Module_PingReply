@@ -16,6 +16,12 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * This module sends replies to PING queries it receives.
+ * It is necessary for the bot to run correctly (without
+ * being disconnected every few minutes with a "Ping timeout"
+ * quit message).
+ */
 class   Erebot_Module_PingReply
 extends Erebot_Module_Base
 {
