@@ -25,7 +25,7 @@
 class   Erebot_Module_PingReply
 extends Erebot_Module_Base
 {
-    public function reload($flags)
+    public function _reload($flags)
     {
         if ($flags & self::RELOAD_HANDLERS) {
             $handler = new Erebot_EventHandler(
@@ -34,6 +34,10 @@ extends Erebot_Module_Base
             );
             $this->_connection->addEventHandler($handler);
         }
+    }
+
+    protected function _unload()
+    {
     }
 
     public function handlePing(Erebot_Interface_Event_Generic &$event)
