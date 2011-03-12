@@ -27,11 +27,11 @@ extends ErebotModuleTestCase
 {
     public function testPingReply()
     {
-        $this->_module = new Erebot_Module_PingReply(
+        $this->_module = new Erebot_Module_PingReply(NULL);
+        $this->_module->reload(
             $this->_connection,
-            NULL
+            Erebot_Module_Base::RELOAD_ALL
         );
-        $this->_module->reload(Erebot_Module_Base::RELOAD_ALL);
         $event = new Erebot_Event_Ping($this->_connection, "foo");
         $this->_module->handlePing($event);
         $this->assertSame(1, count($this->_outputBuffer));
