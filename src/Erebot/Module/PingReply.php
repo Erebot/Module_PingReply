@@ -46,4 +46,3 @@ extends Erebot_Module_Base
     }
 }
 
-?>
