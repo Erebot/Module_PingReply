@@ -30,7 +30,7 @@ extends Erebot_Module_Base
         if ($flags & self::RELOAD_HANDLERS) {
             $handler = new Erebot_EventHandler(
                 array($this, 'handlePing'),
-                new Erebot_Event_Match_InstanceOf('Erebot_Event_Ping')
+                new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_Ping')
             );
             $this->_connection->addEventHandler($handler);
         }
@@ -40,7 +40,7 @@ extends Erebot_Module_Base
     {
     }
 
-    public function handlePing(Erebot_Interface_Event_Generic &$event)
+    public function handlePing(Erebot_Interface_Event_Ping $event)
     {
         $this->sendCommand('PONG :'.$event->getText());
     }
