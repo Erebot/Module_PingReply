@@ -36,6 +36,7 @@ extends ErebotModuleTestCase
         $this->_module->handlePing($event);
         $this->assertSame(1, count($this->_outputBuffer));
         $this->assertSame("PONG :foo", $this->_outputBuffer[0]);
+        $this->_module->unload();
     }
 }
 
