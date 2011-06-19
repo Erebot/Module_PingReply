@@ -17,14 +17,18 @@
 */
 
 /**
- * This module sends replies to PING queries it receives.
- * It is necessary for the bot to run correctly (without
- * being disconnected every few minutes with a "Ping timeout"
- * quit message).
+ * \brief
+ *      A basic module that sends replies to PING queries it receives.
+ *
+ * \note
+ *      This module is required for the bot to run correctly
+ *      (without being disconnected every few minutes with a
+ *      "Ping timeout" quit message).
  */
 class   Erebot_Module_PingReply
 extends Erebot_Module_Base
 {
+    /// \copydoc Erebot_Module_Base::_reload()
     public function _reload($flags)
     {
         if ($flags & self::RELOAD_HANDLERS) {
@@ -36,10 +40,17 @@ extends Erebot_Module_Base
         }
     }
 
+    /// \copydoc Erebot_Module_Base::_unload()
     protected function _unload()
     {
     }
 
+    /**
+     * Responds to PING requests.
+     *
+     * \param Erebot_Interface_Event_Ping $event
+     *      PING request to respond to.
+     */
     public function handlePing(Erebot_Interface_Event_Ping $event)
     {
         $this->sendCommand('PONG :'.$event->getText());
