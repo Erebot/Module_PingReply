@@ -33,7 +33,7 @@ extends Erebot_Module_Base
     {
         if ($flags & self::RELOAD_HANDLERS) {
             $handler = new Erebot_EventHandler(
-                array($this, 'handlePing'),
+                new Erebot_Callable(array($this, 'handlePing')),
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_Ping')
             );
             $this->_connection->addEventHandler($handler);
