@@ -51,7 +51,10 @@ extends Erebot_Module_Base
      * \param Erebot_Interface_Event_Ping $event
      *      PING request to respond to.
      */
-    public function handlePing(Erebot_Interface_Event_Ping $event)
+    public function handlePing(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_Ping     $event
+    )
     {
         $this->sendCommand('PONG :'.$event->getText());
     }
