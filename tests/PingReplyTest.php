@@ -16,23 +16,27 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once(
-    dirname(__FILE__) .
-    DIRECTORY_SEPARATOR . 'testenv' .
-    DIRECTORY_SEPARATOR . 'bootstrap.php'
-);
-
 class   PingReplyTest
 extends ErebotModuleTestCase
 {
     public function testPingReply()
     {
-        $this->_module = new Erebot_Module_PingReply(NULL);
-        $this->_module->reload(
-            $this->_connection,
-            Erebot_Module_Base::RELOAD_ALL
+        $event = $this->getMock(
+            'Erebot_Interface_Event_Ping',
+            array(), array(), '', FALSE, FALSE
         );
-        $event = new Erebot_Event_Ping($this->_connection, "foo");
+
+        $event
+            ->expects($this->any())
+            ->method('getConnection')
+            ->will($this->returnValue($this->_connection));
+        $event
+            ->expects($this->any())
+            ->method('getText')
+            ->will($this->returnValue('foo'));
+
+        $this->_module = new Erebot_Module_PingReply(NULL);
+        $this->_module->reload($this->_connection, 0);
         $this->_module->handlePing($this->_eventHandler, $event);
         $this->assertSame(1, count($this->_outputBuffer));
         $this->assertSame("PONG :foo", $this->_outputBuffer[0]);
