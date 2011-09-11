@@ -48,6 +48,8 @@ extends Erebot_Module_Base
     /**
      * Responds to PING requests.
      *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     *
      * \param Erebot_Interface_Event_Ping $event
      *      PING request to respond to.
      */
