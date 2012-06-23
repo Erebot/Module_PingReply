@@ -37,6 +37,7 @@ try {
     exit(1);
 }
 
+// Return metadata about this package.
 return array(
     'pear.erebot.net/@PACKAGE_NAME@' => array(
         'version' => '@PACKAGE_VERSION@',
@@ -45,7 +46,9 @@ return array(
             DIRECTORY_SEPARATOR . "@PACKAGE_NAME@-@PACKAGE_VERSION@" .
             DIRECTORY_SEPARATOR . "php",
         'requires' => array(
-            'php >= 5.2.0',
+            'php >= 5.2.2',
+            'virt-Erebot_API = 0.2.*',
+            'pear.erebot.net/Erebot',
         ),
     ),
 );
