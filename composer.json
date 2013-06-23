@@ -1,5 +1,5 @@
 {
-    "name": "erebot/erebot-module-pingreply",
+    "name": "erebot/pingreply-module",
     "description": "Erebot module to respond to PING messages",
     "keywords": ["Erebot", "IRC", "bot", "module"],
     "homepage": "https://github.com/Erebot/Erebot_Module_PingReply",
@@ -14,19 +14,23 @@
     "support": {
         "email": "erebot@erebot.net",
         "issues": "https://github.com/Erebot/Erebot_Module_PingReply/issues",
-        "wiki": "http://erebot.github.com/Erebot_Module_PingReply/",
+        "wiki": "http://erebot.github.io/Erebot_Module_PingReply/",
         "irc": "irc://irc.iiens.net/Erebot",
         "source": "https://github.com/Erebot/Erebot_Module_PingReply"
     },
     "repositories": [
         {
-            "type": "pear",
-            "url": "http://pear.php.net"
+            "type": "composer",
+            "url": "http://packages.erebot.net"
         }
     ],
     "require": {
         "php": ">=5.2.2",
-        "erebot/erebot-api": "*"
+        "erebot/api": "*"
+    },
+    "require-dev": {
+        "erebot/buildenv": "dev-master",
+        "erebot/testenv": "dev-master"
     },
     "autoload": {
         "psr-0": {
