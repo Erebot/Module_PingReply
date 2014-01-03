@@ -16,9 +16,28 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+class FakeHelper
+{
+    public function realRegisterHelpMethod(
+        Erebot_Module_Base          $module,
+        Erebot_Interface_Callable   $callable
+    )
+    {
+    }
+}
+
 class   PingReplyTest
 extends Erebot_Testenv_Module_TestCase
 {
+    protected function _setConnectionExpectations()
+    {
+        parent::_setConnectionExpectations();
+        $this->_connection
+            ->expects($this->any())
+            ->method('getModule')
+            ->will($this->returnValue(new FakeHelper()));
+    }
+
     public function testPingReply()
     {
         $event = $this->getMock(
@@ -36,6 +55,7 @@ extends Erebot_Testenv_Module_TestCase
             ->will($this->returnValue('foo'));
 
         $this->_module = new Erebot_Module_PingReply(NULL);
+        $this->_module->setFactory('!Callable', $this->_factory['!Callable']);
         $this->_module->reload($this->_connection, 0);
         $this->_module->handlePing($this->_eventHandler, $event);
         $this->assertSame(1, count($this->_outputBuffer));
