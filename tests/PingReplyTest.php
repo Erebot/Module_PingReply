@@ -42,11 +42,11 @@ extends Erebot_Testenv_Module_TestCase
 
         $this->_module = new \Erebot\Module\PingReply(NULL);
         $this->_module->setFactory('!Callable', $this->_factory['!Callable']);
-        $this->_module->moduleReload($this->_connection, 0);
+        $this->_module->reloadModule($this->_connection, 0);
         $this->_module->handlePing($this->_eventHandler, $event);
         $this->assertSame(1, count($this->_outputBuffer));
         $this->assertSame("PONG :foo", $this->_outputBuffer[0]);
-        $this->_module->moduleUnload();
+        $this->_module->unloadModule();
     }
 }
 
