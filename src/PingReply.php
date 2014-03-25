@@ -16,6 +16,8 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Module;
+
 /**
  * \brief
  *      A basic module that sends replies to PING queries it receives.
@@ -25,9 +27,7 @@
  *      (without being disconnected every few minutes with a
  *      "Ping timeout" quit message).
  */
-class       Erebot_Module_PingReply
-extends     Erebot_Module_Base
-implements  Erebot_Interface_HelpEnabled
+class PingReply extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
 {
     /**
      * This method is called whenever the module is (re)loaded.
@@ -41,37 +41,27 @@ implements  Erebot_Interface_HelpEnabled
      *      See the documentation on individual RELOAD_*
      *      constants for a list of possible values.
      */
-    public function _reload($flags)
+    public function reload($flags)
     {
         if ($flags & self::RELOAD_HANDLERS) {
-            $handler = new Erebot_EventHandler(
-                new Erebot_Callable(array($this, 'handlePing')),
-                new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_Ping')
+            $handler = new \Erebot\EventHandler(
+                new \Erebot\CallableWrapper(array($this, 'handlePing')),
+                new \Erebot\Event\Match\Type('\\Erebot\\Interfaces\\Event\\Ping')
             );
             $this->_connection->addEventHandler($handler);
-
-            $cls = $this->getFactory('!Callable');
-            $this->registerHelpMethod(new $cls(array($this, 'getHelp')));
         }
     }
 
-    /// \copydoc Erebot_Module_Base::_unload()
-    protected function _unload()
-    {
-    }
-
-    /// \copydoc Erebot_Interface_HelpEnabled::getHelp()
     public function getHelp(
-        Erebot_Interface_Event_Base_TextMessage $event,
-        Erebot_Interface_TextWrapper            $words
-    )
-    {
-        if ($event instanceof Erebot_Interface_Event_Base_Private) {
+        \Erebot\Interfaces\Event\Base\TextMessage $event,
+        \Erebot\Interfaces\TextWrapper $words
+    ) {
+        if ($event instanceof \Erebot\Interfaces\Event\Base\PrivateMessage) {
             $target = $event->getSource();
-            $chan   = NULL;
-        }
-        else
+            $chan   = null;
+        } else {
             $target = $chan = $event->getChan();
+        }
 
         $fmt        = $this->getFormatter($chan);
         $moduleName = strtolower(get_class());
@@ -84,27 +74,25 @@ implements  Erebot_Interface_HelpEnabled
                 "response."
             );
             $this->sendMessage($target, $msg);
-            return TRUE;
+            return true;
         }
     }
 
     /**
      * Responds to PING requests.
      *
-     * \param Erebot_Interface_EventHandler $handler
+     * \param Erebot::Interfaces::EventHandler $handler
      *      Handler that triggered this event.
      *
-     * \param Erebot_Interface_Event_Ping $event
+     * \param Erebot::Interfaces::Event::Ping $event
      *      PING request to respond to.
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function handlePing(
-        Erebot_Interface_EventHandler   $handler,
-        Erebot_Interface_Event_Ping     $event
-    )
-    {
+        \Erebot\Interfaces\EventHandler $handler,
+        \Erebot\Interfaces\Event\Ping $event
+    ) {
         $this->sendCommand('PONG :'.$event->getText());
     }
 }
-
