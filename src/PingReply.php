@@ -48,7 +48,7 @@ class PingReply extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEn
                 new \Erebot\CallableWrapper(array($this, 'handlePing')),
                 new \Erebot\Event\Match\Type('\\Erebot\\Interfaces\\Event\\Ping')
             );
-            $this->_connection->addEventHandler($handler);
+            $this->connection->addEventHandler($handler);
         }
     }
 
