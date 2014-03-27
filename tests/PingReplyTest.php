@@ -40,8 +40,8 @@ extends Erebot_Testenv_Module_TestCase
             ->method('getText')
             ->will($this->returnValue('foo'));
 
+        class_exists('\\Erebot\\Module\\callable');
         $this->_module = new \Erebot\Module\PingReply(NULL);
-        $this->_module->setFactory('!Callable', $this->_factory['!Callable']);
         $this->_module->reloadModule($this->_connection, 0);
         $this->_module->handlePing($this->_eventHandler, $event);
         $this->assertSame(1, count($this->_outputBuffer));
