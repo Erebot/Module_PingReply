@@ -1,9 +1,9 @@
 {
-    "minimum-stability": "dev",
+    "prefer-stable": true,
     "name": "erebot/pingreply-module",
     "description": "Erebot module to respond to PING messages",
     "keywords": ["Erebot", "IRC", "bot", "module"],
-    "homepage": "https://github.com/Erebot/Erebot_Module_PingReply",
+    "homepage": "https://github.com/Erebot/Module_PingReply",
     "license": "GPL-3.0+",
     "authors": [
         {
@@ -13,20 +13,18 @@
         }
     ],
     "support": {
-        "email": "erebot@erebot.net",
-        "issues": "https://github.com/Erebot/Erebot_Module_PingReply/issues",
-        "wiki": "http://erebot.github.io/Erebot_Module_PingReply/",
+        "issues": "https://github.com/Erebot/Module_PingReply/issues",
         "irc": "irc://irc.iiens.net/Erebot",
-        "source": "https://github.com/Erebot/Erebot_Module_PingReply"
+        "source": "https://github.com/Erebot/Module_PingReply"
     },
     "require": {
         "php": ">=5.3.0",
-        "erebot/api": "dev-master",
-        "erebot/generic-doc": "dev-master"
+        "erebot/api": "^0.7.1"
     },
     "require-dev": {
-        "erebot/buildenv": "~1.1",
-        "erebot/testenv": "~1.0"
+        "erebot/buildenv": "^1.1.0",
+        "erebot/testenv": "^1.1.2",
+        "erebot/generic-doc": "*"
     },
     "autoload": {
         "psr-4": {
