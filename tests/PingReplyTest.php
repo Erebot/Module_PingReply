@@ -26,11 +26,7 @@ extends Erebot_Testenv_Module_TestCase
 
     public function testPingReply()
     {
-        $event = $this->getMock(
-            '\\Erebot\\Interfaces\\Event\\Ping',
-            array(), array(), '', FALSE, FALSE
-        );
-
+        $event = $this->getMockBuilder('\\Erebot\\Interfaces\\Event\\Ping')->getMock();
         $event
             ->expects($this->any())
             ->method('getConnection')
